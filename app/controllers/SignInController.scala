@@ -9,6 +9,7 @@ import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.util.{ Clock, Credentials }
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers._
+import controllers.s4n.provider.S4nCredentialsProvider
 import forms.SignInForm
 import models.services.UserService
 import net.ceedubs.ficus.Ficus._
@@ -40,7 +41,7 @@ class SignInController @Inject() (
   silhouette: Silhouette[DefaultEnv],
   userService: UserService,
   authInfoRepository: AuthInfoRepository,
-  credentialsProvider: CredentialsProvider,
+  credentialsProvider: S4nCredentialsProvider,
   socialProviderRegistry: SocialProviderRegistry,
   configuration: Configuration,
   clock: Clock)
