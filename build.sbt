@@ -28,6 +28,7 @@ libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % "9.4.1208",
   "com.github.tminglei" %% "slick-pg" % "0.12.2",
   "com.typesafe.slick" %% "slick" % "3.1.1",
+  "com.typesafe.slick" %% "slick-codegen" % "3.1.1",
   cache,
   filters
 )
@@ -48,6 +49,24 @@ scalacOptions ++= Seq(
   "-Ywarn-nullary-override", // Warn when non-nullary overrides nullary, e.g. def foo() over def foo.
   "-Ywarn-numeric-widen" // Warn when numerics are widened.
 )
+//
+//slick <<= slickCodeGenTask
+//
+//sourceGenerators in Compile <+= slickCodeGenTask
+//
+//lazy val slick = TaskKey[Seq[File]]("gen-tables")
+//lazy val slickCodeGenTask = (sourceManaged, dependencyClasspath in Compile, runner in Compile, streams) map { (dir, cp, r, s) =>
+//  val outputDir = (dir / "app/commons").getPath
+//  val username = "postgres"
+//  val password = "password"
+//  val url = "jdbc:postgresql://localhost:5432/postgres"
+//  val jdbcDriver = "org.postgresql.Driver"
+//  val slickDriver = "slick.driver.PostgresDriver"
+//  val pkg = "commons.models"
+//  toError(r.run("slick.codegen.SourceCodeGenerator", cp.files, Array(slickDriver, jdbcDriver, url, outputDir, pkg, username, password), s.log))
+//  val fname = outputDir + "/" + "models" + "/Tables.scala"
+//  Seq(file(fname))
+//}
 
 //********************************************************
 // Scalariform settings
